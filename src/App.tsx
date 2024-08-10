@@ -10,6 +10,7 @@ import { IconButton, Typography } from "payzli-ui";
 import InputFieldSection from "./Views/InputFieldSection";
 import CardSection from "./Views/CardSection";
 import TypographySection from "./Views/TypographySection";
+import TabsSection from "./Views/TabsSection";
 
 function App() {
 	const [theme, setTheme] = useState("light");
@@ -35,6 +36,7 @@ function App() {
 				</IconButton>
 			</header>
 			<div className="App-body">
+				<TabsSection />
 				<ButtonSection />
 				<IconButtonSection />
 				<BreadcrumbSection />

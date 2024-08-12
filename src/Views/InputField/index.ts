@@ -1,2 +1,2 @@
-import InputField from "./InputField";
-export default InputField;
+export { default as InputField } from "./TextField";
+export { default as NumberInput } from "./NumberInput";

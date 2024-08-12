@@ -78,10 +78,6 @@ html {
 	color: var(--colors-gray-100);
 }
 
-.icon-color {
-	color: var(--icon-color);
-}
-
 /* ------------------------------------- Media Queries Start ---------------------------------------- */
 
 @media all and (max-width: 480px) {
@@ -200,10 +196,9 @@ i.ph-light,
 i.ph-fill {
 	font-family: "regular";
 	font-size: initial;
-	color: var(--iconColor);
 }
 .icon-color {
-	color: var(--nav-item-icon-fg);
+	color: var(--icon-color);
 }
 .icon-color:active {
 	color: var(--nav-item-icon-fg_active);
@@ -312,9 +307,7 @@ i.ph-fill {
 .fntSz120p {
 	font-size: 120%;
 }
-input[aria-invalid="true"] {
-	border-color: tomato;
-}
+
 select[aria-invalid="true"] {
 	border-color: tomato;
 }
@@ -1810,9 +1803,6 @@ h4.main-comm-head,
 }
 .more_icon i {
 	font-size: 1.25rem;
-	color: var(--icon-color);
-}
-.icon-color {
 	color: var(--icon-color);
 }
 

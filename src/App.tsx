@@ -30,12 +30,13 @@ function App() {
 	return (
 		<div className="App">
 			<header className="App-header">
-				<h4 className="m-0">React Typescript Library Example</h4>
+				<h4 className="m-0">Payzli UI Components</h4>
 				<IconButton onClick={handleClickTheme} variant={"primary"}>
 					{theme === "dark" ? <i className="ph-fill ph-moon"></i> : <i className="ph-fill ph-sun"></i>}
 				</IconButton>
 			</header>
 			<div className="App-body">
+				<InputFieldSection />
 				<TabsSection />
 				<ButtonSection />
 				<IconButtonSection />
@@ -45,7 +46,6 @@ function App() {
 				<AvatarGroupSection />
 				<CardSection />
 				<TypographySection />
-				<InputFieldSection />
 				<br />
 				<br />
 				<br />

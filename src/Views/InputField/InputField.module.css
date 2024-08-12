@@ -5,6 +5,9 @@
 	position: relative;
 	margin-bottom: 1.25rem;
 }
+.input_cont {
+	position: relative;
+}
 
 .form_field {
 	height: var(--form-field-height);
@@ -31,6 +34,10 @@
 	box-shadow: 0px 1px 2px 0px #1018280d;
 	color: var(--text-disabled, #667085);
 	cursor: not-allowed;
+}
+.form_field[aria-invalid="true"],
+.form_field[aria-invalid="true"] ~ .form_field_info_icon {
+	border: 1px solid var(--border-error, #fda29b);
 }
 
 .form_group .form_label {
@@ -68,27 +75,49 @@
 	position: absolute;
 	top: calc(var(--form-field-height) / 2 - 0.5rem);
 	right: var(--spacing-lg);
-	cursor: pointer;
+	cursor: auto;
 	height: 1rem;
 	width: 1rem;
 	z-index: 3;
+	display: flex;
+	align-items: center;
 }
+.help_icon .tooltip_popup {
+	display: none;
+}
+.help_icon:hover .tooltip_popup {
+	display: block;
+}
+
 .form_field_info_icon {
 	color: var(--fg-quinary, #98a2b3) !important;
 }
 .help_icon .tooltip_popup {
 	position: absolute;
-	right: 0;
-	background: var(--bg-primary, #ffffff);
-	border: 1px solid var(--border-primary, #d0d5dd);
-	box-shadow: 0px 1px 2px 0px #1018280d;
-	border-radius: var(--radius-md, 8px);
-	padding: var(--spacing-sm);
+	right: -0.5rem;
+	padding: var(--spacing-sm) var(--spacing-lg);
+	gap: 0px;
+	border-radius: var(--radius-md);
+	opacity: 0px;
 	z-index: 100;
-	bottom: 1rem;
 	width: max-content;
+	bottom: calc(100% + 4px);
+	background: var(--bg-primary-solid, #0c111d);
+	color: var(--text-white);
 }
-.form_group .form_field_info_icon ~ .form_field {
+
+.help_icon .tooltip_popup::after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	right: 11px;
+	margin-left: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: var(--bg-primary-solid, #0c111d) transparent transparent transparent;
+}
+
+.form_group .help_icon ~ .form_field {
 	padding-right: calc(var(--spacing-lg) + 1rem + var(--spacing-md));
 }
 .form_group .hint_text {
@@ -108,8 +137,25 @@
 	color: var(--text-error-primary, #d92d20);
 }
 
-input.field_invalid {
+input.field_invalid,
+input.field_invalid ~ .help_icon .form_field_info_icon {
 	border: 1px solid var(--border-error, #fda29b);
 }
 input.field_validated {
+}
+
+/* -----------------------------Number Input------------------- */
+
+.left_icon_cont {
+	position: absolute;
+	left: var(--spacing-lg);
+	cursor: auto;
+	height: var(--form-field-height);
+	width: 1rem;
+	z-index: 3;
+	display: flex;
+	align-items: center;
+}
+.form_group .left_icon_cont ~ .form_field {
+	padding-left: calc(var(--spacing-lg) + 1rem + var(--spacing-md));
 }

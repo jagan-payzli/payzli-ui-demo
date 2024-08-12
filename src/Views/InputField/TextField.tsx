@@ -3,7 +3,7 @@ import { EMAIL_REGEX, URL_REGEX } from "payzli-ui";
 import styles from "./InputField.module.css";
 import { HideComponentWrapper } from "payzli-ui";
 import { phrases } from "../../utils/constant";
-type Props = {
+interface ITextField {
 	type: "text" | "email";
 	id: string;
 	value: string | number;
@@ -15,7 +15,7 @@ type Props = {
 	label: string;
 	errorMessage?: string;
 	formClass?: string;
-	icon?: "search";
+	leftIcon?: "search" | "email" | JSX.Element;
 	onBlur?: any;
 	disabled?: boolean;
 	disableAutoFill?: boolean;
@@ -35,9 +35,9 @@ type Props = {
 	hintText?: string; // Pass hint text to show below the input field
 	UiLanguage?: string; // Pass language for transformPhrase
 	transformPhrase?: any; // (phrase: string, language: string, params: any) => string;
-};
+}
 
-const InputField = ({ ...props }: Props) => {
+const TextField: React.FC<ITextField> = ({ ...props }: ITextField) => {
 	const [error, setError] = useState(props.errorMessage);
 	const [value, setValue] = useState(props.value || "");
 
@@ -78,7 +78,6 @@ const InputField = ({ ...props }: Props) => {
 			return true;
 		}
 		if (!e.target.value && e.target.required) {
-			console.log("styles.field_invalid", styles);
 			e.target.classList.add(styles.field_invalid);
 			setError(transformPhrase("fieldRequired"));
 		} else if (e.target.type === "email") {
@@ -105,7 +104,13 @@ const InputField = ({ ...props }: Props) => {
 		props?.onBlur?.(e);
 	};
 	const getMessageText = () => {
+		if (value && props.required && error === transformPhrase("fieldRequired")) {
+			setError("");
+		}
 		if (error) {
+			return <span className={`${styles.error_text}`}>{error}</span>;
+		} else if (props.formSubmitted && !value && props.required) {
+			setError(transformPhrase("fieldRequired"));
 			return <span className={`${styles.error_text}`}>{error}</span>;
 		} else if (props.hintText) {
 			return <span className={`${styles.hint_text}`}>{props.hintText}</span>;
@@ -123,11 +128,18 @@ const InputField = ({ ...props }: Props) => {
 					{props.label}
 				</label>
 			</HideComponentWrapper>
-			<div className="position-relative">
+			<div className={styles.input_cont}>
 				<HideComponentWrapper show={!!props.tooltip}>
 					<div className={styles.help_icon}>
 						<i className={`ph ph-question ${styles.form_field_info_icon}`}></i>
 						<div className={styles.tooltip_popup}>{props.tooltip && <span>{props.tooltip}</span>}</div>
+					</div>
+				</HideComponentWrapper>
+				<HideComponentWrapper show={!!props.leftIcon}>
+					<div className={styles.left_icon_cont}>
+						{props.leftIcon === "search" && <i className={`ph ph-magnifying-glass icon-color ${styles.form_field_left_icon}`}></i>}
+						{props.leftIcon === "email" && <i className={`ph ph-envelope-simple icon-color ${styles.form_field_left_icon}`}></i>}
+						{props.leftIcon !== "search" && props.leftIcon !== "email" && props.leftIcon}
 					</div>
 				</HideComponentWrapper>
 				<input
@@ -168,4 +180,4 @@ const numbericModeByType: any = {
 	"": "text"
 };
 
-export default React.memo(InputField);
+export default React.memo(TextField);

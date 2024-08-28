@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import { IconButton } from "./components";
 import AccordionSection from "./Views/AccordionSection";
 import AvatarGroupSection from "./Views/AvatarGroupSection";
 import AvatarSection from "./Views/AvatarSection";
 import BreadcrumbSection from "./Views/BreadcrumbSection";
 import ButtonSection from "./Views/ButtonSection";
-import IconButtonSection from "./Views/IconButtonSection";
-import { IconButton, Typography } from "payzli-ui";
-import InputFieldSection from "./Views/InputFieldSection";
 import CardSection from "./Views/CardSection";
-import TypographySection from "./Views/TypographySection";
+import IconButtonSection from "./Views/IconButtonSection";
+import InputFieldSection from "./Views/InputFieldSection";
 import TabsSection from "./Views/TabsSection";
+import TypographySection from "./Views/TypographySection";
+import SelectInput from "./Views/SelectInput";
+import PopoverSection from "./Views/PopoverSection";
 
 function App() {
 	const [theme, setTheme] = useState("light");
@@ -37,6 +39,8 @@ function App() {
 			</header>
 			<div className="App-body">
 				<InputFieldSection />
+				<SelectInput />
+				<PopoverSection />
 				<TabsSection />
 				<ButtonSection />
 				<IconButtonSection />

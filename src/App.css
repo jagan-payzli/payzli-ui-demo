@@ -1,6 +1,11 @@
 .App {
 }
-
+button {
+	outline: none !important;
+}
+.gap3 {
+	gap: 3rem;
+}
 .App-header {
 	background-color: #282c34;
 	height: 3.5rem;
@@ -54,4 +59,25 @@
 }
 .rotate25 {
 	transform: rotate(25deg);
+}
+
+.dropdown_icon_button {
+	border-top-left-radius: 0 !important;
+	border-bottom-left-radius: 0 !important;
+}
+.divider {
+	width: 100%;
+	border-bottom: 1px solid var(--border-primary);
+}
+.divider_hr {
+	width: 100%;
+	border-top: 1px solid var(--border-primary);
+}
+
+.divider_vr {
+	height: 100%;
+	border-right: 1px solid var(--border-primary);
+}
+.bold {
+	font-family: "semibold" !important;
 }

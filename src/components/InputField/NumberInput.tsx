@@ -1,50 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import NumberFormat from "react-number-format";
 import styles from "./InputField.module.css";
-import { phrases } from "../../utils/constant";
-import { HideComponentWrapper } from "payzli-ui";
-interface INumberInput {
-	id: string; // unique id for input field
-	value: string | number;
-	onChange: any;
-	name: string; // using as identifier for input field
-	label: string; // label for input field
-	placeholder?: string;
-	required: boolean;
-	className: string;
-	formClass?: string;
-	formSubmitted: boolean; // this helps to show error message on form submit
-	disabled?: boolean;
-	decimalPlace?: number; // default 2 decimal allowed, you can pass any number
-	mask?: string;
-	min?: number;
-	max?: number;
-	icon?: "currency" | "percentage";
-	prefix?: string; // pass prefix in case of diffent icon
-	suffix?: string; // pass suffix in case of diffent icon
-	onFocus?: any;
-	onBlur?: any;
-	isError?: (err: { [name: string]: string }) => void;
-	onContextMenu?: any;
-	allowNegative?: boolean;
-	skipValidation?: boolean;
-	disableWarning?: boolean;
-	readOnly?: boolean; // similar to disabled but can be selected & copied but not edited
-	autoFocus?: boolean;
-	minLength?: number;
-	maxLength?: number;
-	showMaxLength?: boolean; // pass this to show max length message
-	tooltip?: string; // Pass tooltip text to show on info icon click
-	hintText?: string; // Pass hint text to show below the input field
-	errorMessage?: string; // Pass error message to show below the input field
-	transformPhrase?: any;
-	UiLanguage?: string;
-}
+import HideComponentWrapper from "../HideComponentWrapper";
+import { phrases } from "../../constant";
+import { INumberInput } from "../../models";
+
 const DEFAULT_MAX = 999999999999999;
 
 const NumberInput: React.FC<INumberInput> = (props: INumberInput) => {
 	const [value, setValue] = useState(props.value);
 	const [error, setError] = useState(props.errorMessage);
+	const sectionRightIconRef = useRef<HTMLDivElement | null>(null);
+	const [sectionWidth, setSectionWidth] = useState<number>(0);
 	const optionalProps: any = {
 		max: DEFAULT_MAX
 	};
@@ -70,10 +37,6 @@ const NumberInput: React.FC<INumberInput> = (props: INumberInput) => {
 		setError(props.errorMessage);
 	}, [props.errorMessage]);
 
-	// useEffect(() => {
-	//     props?.isError?.({ [props?.name]: error });
-	// }, [error]);
-
 	const transformPhrase = (phrase: string) => {
 		if (props.transformPhrase && typeof props.transformPhrase === "function" && props.UiLanguage) {
 			return props.transformPhrase(phrase, props.UiLanguage, {});
@@ -87,7 +50,6 @@ const NumberInput: React.FC<INumberInput> = (props: INumberInput) => {
 		let strValue: string = event.target.value.replace(/[%$,]/g, "");
 		event.target.value = strValue;
 		let value: number = +strValue || 0;
-		console.log("value", value);
 		if (props.skipValidation) {
 			setError("");
 		} else if (props.required && !value) {
@@ -150,6 +112,12 @@ const NumberInput: React.FC<INumberInput> = (props: INumberInput) => {
 			return <span className={`${styles.hint_text}`}>{`${value?.toString()?.length ?? 0}/${props.maxLength}`}</span>;
 		}
 	};
+	useEffect(() => {
+		if (props.tooltip && (props.sectionType === "right" || props.sectionType === "both") && props.sectionRightIcon) {
+			console.log(sectionRightIconRef.current?.clientWidth);
+			setSectionWidth(sectionRightIconRef.current?.clientWidth || 0);
+		}
+	}, []);
 
 	return (
 		<div className={`${styles.form_group} ${props.formClass || ""}`}>
@@ -160,61 +128,76 @@ const NumberInput: React.FC<INumberInput> = (props: INumberInput) => {
 			</HideComponentWrapper>
 			<div className={styles.input_cont}>
 				<HideComponentWrapper show={!!props.tooltip}>
-					<div className={styles.help_icon}>
-						<i className={`ph ph-question ${styles.form_field_info_icon}`}></i>
-						<div className={styles.tooltip_popup}>{props.tooltip && <span>{props.tooltip}</span>}</div>
+					<div className={styles.help_icon_cont}>
+						<div
+							style={
+								props.inputType === "amount"
+									? { right: `calc(${sectionWidth}px + var(--spacing-md))` }
+									: { right: `calc(${sectionWidth}px + var(--spacing-lg))` }
+							}
+							className={styles.help_icon}
+						>
+							<i className={`ph ph-question ${styles.form_field_info_icon}`}></i>
+						</div>
+						<div style={{ right: `calc(${sectionWidth}px + 0.26rem` }} className={styles.tooltip_popup}>
+							{props.tooltip && <span>{props.tooltip}</span>}
+						</div>
 					</div>
 				</HideComponentWrapper>
-				<NumberFormat
-					onBlur={handleBlur}
-					onValueChange={handleChange}
-					onFocus={handleFocus}
-					type="text"
-					value={value}
-					required={!!props.required}
-					id={props.id}
-					name={props.name}
-					className={`${styles.form_field} ${props.className}`}
-					disabled={props.disabled}
-					min={props.min || 0}
-					max={optionalProps.max}
-					inputMode={"decimal"}
-					placeholder={showPlaceHolder ? "__." + "_".repeat(decimalPlaces) : props.placeholder}
-					aria-invalid={props.formSubmitted && typeof value !== "number" && !value && props.required}
-					aria-valuetext={showPlaceHolder || value || value == 0 ? "true" : "false"}
-					mask={props.mask}
-					getInputRef={numberFormatterRef}
-					decimalScale={decimalPlaces}
-					fixedDecimalScale={!!decimalPlaces}
-					isAllowed={handleAllowValues}
-					allowNegative={props.allowNegative || false}
-					onContextMenu={props.onContextMenu}
-					thousandSeparator={props.icon === "currency"}
-					readOnly={props.readOnly}
-					autoFocus={props.autoFocus}
-					aria-details={props.icon || "Number"}
-					{...optionalProps}
-				/>
+				<HideComponentWrapper show={!!props.leftIcon}>
+					<div className={props.leftIconClass || styles.amount_left_icon}>{props.leftIcon}</div>
+				</HideComponentWrapper>
+				<div className={`${styles.multisection_cont} ${props.sectionType ? styles["section_type_" + props.sectionType] : ""}`}>
+					<div
+						hidden={!props.sectionType || props.sectionType === "right"}
+						className={styles.multi_section_left}
+						aria-disabled={props.disabled}
+					>
+						{props.sectionLeftIcon}
+					</div>
+					<NumberFormat
+						onBlur={handleBlur}
+						onValueChange={handleChange}
+						onFocus={handleFocus}
+						type="text"
+						value={value}
+						required={!!props.required}
+						id={props.id}
+						name={props.name}
+						className={`${styles.form_field} ${props.className}`}
+						disabled={props.disabled}
+						min={props.min ?? 0}
+						max={optionalProps.max}
+						inputMode={"decimal"}
+						placeholder={showPlaceHolder ? "__." + "_".repeat(decimalPlaces) : props.placeholder}
+						aria-invalid={props.formSubmitted && typeof value !== "number" && !value && props.required}
+						aria-valuetext={showPlaceHolder || value || value == 0 ? "true" : "false"}
+						mask={props.mask}
+						getInputRef={numberFormatterRef}
+						decimalScale={decimalPlaces}
+						fixedDecimalScale={!!decimalPlaces}
+						isAllowed={handleAllowValues}
+						allowNegative={props.allowNegative || false}
+						onContextMenu={props.onContextMenu}
+						thousandSeparator={props.thousandSeparator || props.icon === "currency"}
+						thousandsGroupStyle={props.thousandsGroupStyle || "thousand"}
+						readOnly={props.readOnly}
+						autoFocus={props.autoFocus}
+						aria-details={props.icon || "Number"}
+						ref={props.ref}
+						{...optionalProps}
+					/>
+					<div
+						ref={sectionRightIconRef}
+						aria-disabled={props.disabled}
+						hidden={!props.sectionType || props.sectionType === "left"}
+						className={`${styles.multi_section_right} ${props.inputType === "amount" ? styles.amount_right_icon : ""}`}
+					>
+						{props.sectionRightIcon}
+					</div>
+				</div>
 				{getMessageText()}
 			</div>
-			{/* <label className={`px-0 form-label cursor-text ${props.required ? "required" : ""}`} htmlFor={props.id || props.name || props.label}>
-                {props.label}
-            </label> */}
-
-			{/* {(error || props.error || (props.required && props.formSubmitted && typeof props.value !== "number" && !props.value)) && (
-                <label htmlFor={props.id || props.name || props.label} className="error">
-                    {transformPhrase(error || props.error || "fieldRequired", UiLanguage, {
-                        name: props.label,
-                        min: +props.value < props.min ? props.min : props.minLength || 0
-                    })}
-                </label>
-            )}
-            {!props.disableWarning && (
-                <label htmlFor={props.id || props.name || props.label} className={"text-muted max_validation_message"} id="max_validation_message">
-                    <i className="icon-info" />
-                    {transformPhrase("max_amount_limit", UiLanguage, { min: props.min || 0, max: optionalProps.max })}
-                </label>
-            )} */}
 		</div>
 	);
 };

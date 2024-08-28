@@ -1,0 +1,131 @@
+.typography {
+    font-style: normal;
+    margin: 0;
+}
+
+.type_heading.size_xxl {
+    font-size: 4.5rem;
+    line-height: 5.625rem;
+}
+.type_heading.size_xl {
+    font-size: 3.75rem;
+    line-height: 4.5rem;
+}
+.type_heading.size_lg {
+    font-size: 3rem;
+    line-height: 3.75rem;
+}
+.type_heading.size_md {
+    font-size: 2.25rem;
+    line-height: 2.75rem;
+}
+.type_heading.size_sm {
+    font-size: 1.875rem;
+    line-height: 2.375rem;
+}
+.type_heading.size_xs {
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+.type_text.size_xl {
+    font-size: 1.25rem;
+    line-height: 1.875rem;
+}
+.type_text.size_lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+.type_text.size_md {
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+.type_text.size_sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+.type_text.size_xs {
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+}
+.typography.font_semibold {
+    font-family: "semibold";
+    font-weight: 575;
+}
+.typography.font_regular {
+    font-family: "regular";
+    font-weight: 375;
+}
+.typography.font_light {
+    font-family: "light";
+    font-weight: 275;
+}
+.typography.font_medium {
+    font-family: "medium";
+    font-weight: 475;
+}
+.typography.font_bold {
+    font-family: "bold";
+    font-weight: 675;
+}
+
+.color_primary {
+    color: var(--text-primary, #101828);
+}
+.color_primary_on_brand {
+    color: var(--text-primary_on-brand, #ffffff);
+}
+.color_secondary {
+    color: var(--text-secondary, #4b5563);
+}
+.color_secondary_on_brand {
+    color: var(--text-secondary_on-brand, #e2e8f0);
+}
+
+.color_tertiary {
+    color: var(--text-tertiary, #718096);
+}
+.color_tertiary_brand {
+    color: var(--text-tertiary_on-brand, #e2e8f0);
+}
+.color_quaternary {
+    color: var(--text-quaternary, #a0aec0);
+}
+.color_quaternary_brand {
+    color: var(--text-quaternary_on-brand, #cbd5e0);
+}
+.color_white {
+    color: var(--text-white, #ffffff);
+}
+.color_disabled {
+    color: var(--text-disabled, #a0aec0);
+}
+.color_placeholder {
+    color: var(--text-placeholder, #a0aec0);
+}
+.color_placeholder_subtle {
+    color: var(--text-placeholder_subtle, #cbd5e0);
+}
+.color_brand_primary {
+    color: var(--text-brand-primary, #2b6cb0);
+}
+.color_brand_secondary {
+    color: var(--text-brand-secondary, #2c5282);
+}
+.color_brand_tertiary {
+    color: var(--text-brand-tertiary, #2d3748);
+}
+.color_brand_tertiary_alt {
+    color: var(--text-brand-tertiary_alt, #4a5568);
+}
+.color_error_primary {
+    color: var(--text-error-primary, #e53e3e);
+}
+.color_warning_primary {
+    color: var(--text-warning-primary, #d97706);
+}
+.color_success_primary {
+    color: var(--text-success-primary, #38a169);
+}
+.color_muted {
+    color: var(--text_muted, #718096);
+}

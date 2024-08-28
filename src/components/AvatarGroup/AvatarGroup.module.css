@@ -1,0 +1,58 @@
+.add_member_icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: var(--radius-full, 624.9375rem);
+	border: 1px dashed var(--border-primary, #d0d5dd);
+	background: var(--bg-primary, #fff);
+	color: #98a2b3;
+	cursor: pointer;
+	flex-shrink: 0;
+}
+
+.add_member_icon:hover {
+	background-color: var(--bg-primary_hover);
+}
+
+.avatar_group {
+	display: flex;
+	align-items: center;
+	position: relative;
+	margin-left: 10px;
+}
+.avatar_item_cont {
+	margin-left: -1rem;
+	border: 2px solid #fff;
+	border-radius: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: fit-content;
+	width: fit-content;
+}
+.avatar_group .avatar_icon .more_avatar {
+	color: #475467;
+	text-align: center;
+	font-family: "medium";
+	font-size: 0.75rem;
+	font-style: normal;
+	font-weight: 580;
+	line-height: 1.125rem;
+	background: #f2f4f7;
+}
+.avatar_group_cont {
+	display: flex;
+	align-items: center;
+	gap: var(--spacing-md, 0.5rem);
+}
+
+.avatar_icon {
+	border: 2px solid #fff;
+	border-radius: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: fit-content;
+	width: fit-content;
+	position: relative;
+}

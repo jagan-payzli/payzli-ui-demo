@@ -1,0 +1,90 @@
+.breadcrumb {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	padding: 0.75rem 0;
+	margin-bottom: 0.5rem;
+	list-style: none;
+	/* background-color: #e9ecef; */
+	border-radius: 0.25rem;
+}
+.breadcrumb_item + .breadcrumb_item::before {
+	/* display: inline-block;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    color: #6c757d; */
+}
+.breadcrumb_item + .breadcrumb_item:hover::before {
+	text-decoration: underline;
+}
+.breadcrumb_item + .breadcrumb_item:hover::before {
+	text-decoration: none;
+}
+.breadcrumb_item {
+	cursor: pointer;
+	color: var(--text-secondary);
+	padding: var(--spacing-xs) var(--spacing-md);
+	color: var(--breadcrumb-fg);
+	font-family: "medium";
+	font-size: 0.875rem;
+	font-style: normal;
+	font-weight: 475;
+	line-height: 1.25rem;
+	margin: 0;
+}
+.breadcrumb_item:hover {
+	color: var(--breadcrumb-fg_hover);
+}
+.breadcrumb_item_readonly,
+.breadcrumb_item_readonly:hover {
+	color: var(--breadcrumb-brand-fg_hover, #e46300);
+	cursor: auto !important;
+}
+.breadcrumb_item_readonly.secondary,
+.breadcrumb_item_readonly.secondary:hover {
+	background: var(--breadcrumb-brand-bg_hover, #fff6ef);
+	padding: var(--spacing-xs) var(--spacing-md) var(--spacing-xs) var(--spacing-md);
+	border-radius: var(--radius-sm, 6px);
+}
+.breadcrumb_item_readonly.tertiary,
+.breadcrumb_item_readonly.tertiary:hover {
+	background: var(--breadcrumb-bg_hover, #f9fafb);
+	padding: var(--spacing-xs) var(--spacing-md) var(--spacing-xs) var(--spacing-md);
+	border-radius: var(--radius-sm, 6px);
+	color: var(--breadcrumb-fg_hover, #344054);
+}
+
+.breadcrumb_separator {
+	height: 1rem;
+	width: 1rem;
+	color: var(--fg-senary, #d0d5dd);
+	display: flex;
+	align-items: center;
+}
+
+.breadcrumb_container {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	gap: var(--spacing-md);
+	padding-bottom: var(--spacing-xl);
+	padding-top: var(--spacing-2xl);
+	align-items: center;
+}
+
+.breadcrumb_link {
+	text-decoration: none;
+}
+
+.homepage_icon,
+.homepage_icon:hover {
+	all: unset;
+	cursor: pointer;
+	color: var(--breadcrumb-icon-fg, #667085);
+	font-size: 1.25rem;
+}
+.homepage_icon i {
+	font-size: inherit;
+}

@@ -1,41 +1,8 @@
+import { EMAIL_REGEX, phrases, URL_REGEX } from "../../constant";
 import React, { useEffect, useState } from "react";
-import { EMAIL_REGEX, URL_REGEX } from "payzli-ui";
 import styles from "./InputField.module.css";
-import { HideComponentWrapper } from "payzli-ui";
-import { phrases } from "../../utils/constant";
-interface ITextField {
-	type: "text" | "email";
-	id: string;
-	value: string | number;
-	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-	className: string;
-	required?: boolean;
-	formSubmitted: boolean;
-	name: string;
-	label: string;
-	errorMessage?: string;
-	formClass?: string;
-	leftIcon?: "search" | "email" | JSX.Element;
-	onBlur?: any;
-	disabled?: boolean;
-	disableAutoFill?: boolean;
-	fieldType?: string;
-	autoFocus?: boolean;
-	onClick?: any;
-	readOnly?: boolean;
-	disableValidation?: boolean;
-	placeholder?: string;
-	imputMode?: "text" | "search" | "email" | "tel" | "url" | "none" | "numeric" | "decimal";
-	list?: string;
-	pattern?: string; // pass regex pattern
-	minLength?: number;
-	maxLength?: number;
-	showMaxLength?: boolean; // pass this to show max length message
-	tooltip?: string; // Pass tooltip text to show on info icon click
-	hintText?: string; // Pass hint text to show below the input field
-	UiLanguage?: string; // Pass language for transformPhrase
-	transformPhrase?: any; // (phrase: string, language: string, params: any) => string;
-}
+import HideComponentWrapper from "../HideComponentWrapper";
+import { ITextField } from "../../models";
 
 const TextField: React.FC<ITextField> = ({ ...props }: ITextField) => {
 	const [error, setError] = useState(props.errorMessage);
@@ -122,7 +89,7 @@ const TextField: React.FC<ITextField> = ({ ...props }: ITextField) => {
 	};
 
 	return (
-		<div className={`${styles.form_group} ${props.formClass || ""}`}>
+		<div className={`${styles.form_group} ${props.formClass ?? ""} ${props.fieldType ? styles["field_type_" + props.fieldType] : ""}`}>
 			<HideComponentWrapper show={!!props.label}>
 				<label className={`${styles.form_label} ${props.required === true ? styles.required : styles.optional}`} htmlFor={props.id}>
 					{props.label}
@@ -130,42 +97,57 @@ const TextField: React.FC<ITextField> = ({ ...props }: ITextField) => {
 			</HideComponentWrapper>
 			<div className={styles.input_cont}>
 				<HideComponentWrapper show={!!props.tooltip}>
-					<div className={styles.help_icon}>
-						<i className={`ph ph-question ${styles.form_field_info_icon}`}></i>
+					<div className={styles.help_icon_cont}>
+						<div className={styles.help_icon}>
+							<i className={`ph ph-question ${styles.form_field_info_icon}`}></i>
+						</div>
 						<div className={styles.tooltip_popup}>{props.tooltip && <span>{props.tooltip}</span>}</div>
 					</div>
 				</HideComponentWrapper>
 				<HideComponentWrapper show={!!props.leftIcon}>
 					<div className={styles.left_icon_cont}>
-						{props.leftIcon === "search" && <i className={`ph ph-magnifying-glass icon-color ${styles.form_field_left_icon}`}></i>}
-						{props.leftIcon === "email" && <i className={`ph ph-envelope-simple icon-color ${styles.form_field_left_icon}`}></i>}
+						{props.leftIcon === "search" && (
+							<i style={{ fontSize: "1.25rem" }} className={`ph ph-magnifying-glass icon-color ${styles.form_field_left_icon}`}></i>
+						)}
+						{props.leftIcon === "email" && (
+							<i style={{ fontSize: "1.25rem" }} className={`ph ph-envelope-simple icon-color ${styles.form_field_left_icon}`}></i>
+						)}
 						{props.leftIcon !== "search" && props.leftIcon !== "email" && props.leftIcon}
 					</div>
 				</HideComponentWrapper>
-				<input
-					id={props.id}
-					name={props.name || props.label}
-					className={`${styles.form_field} ${props.className}`}
-					type={props.type}
-					value={value}
-					aria-invalid={props.formSubmitted && !value && props.required}
-					aria-valuetext={String(!!value)}
-					onBlur={handleValidate}
-					onChange={handleChange}
-					required={!!props.required}
-					placeholder={props.placeholder}
-					disabled={!!props.disabled}
-					autoFocus={!!props.autoFocus}
-					readOnly={props.readOnly}
-					autoComplete={props.disableAutoFill ? "off" : "on"}
-					onClick={props.onClick}
-					aria-details={props.type}
-					inputMode={props.imputMode || numbericModeByType[props.type]}
-					maxLength={props.maxLength}
-					minLength={props.minLength}
-					list={props.list}
-					pattern={props.pattern}
-				/>
+				<div className={`${styles.multisection_cont} ${props.sectionType ? styles["section_type_" + props.sectionType] : ""}`}>
+					<div hidden={!props.sectionType || props.sectionType === "right"} className={styles.multi_section_left}>
+						{props.sectionLeftIcon}
+					</div>
+					<input
+						id={props.id}
+						name={props.name || props.label}
+						className={`${styles.form_field} ${props.className}`}
+						type={props.type}
+						value={value}
+						aria-invalid={props.formSubmitted && !value && props.required}
+						aria-valuetext={String(!!value)}
+						onBlur={handleValidate}
+						onChange={handleChange}
+						required={!!props.required}
+						placeholder={props.placeholder}
+						disabled={!!props.disabled}
+						autoFocus={!!props.autoFocus}
+						readOnly={props.readOnly}
+						autoComplete={props.disableAutoFill ? "off" : "on"}
+						onClick={props.onClick}
+						aria-details={props.type}
+						inputMode={props.imputMode || numbericModeByType[props.type]}
+						maxLength={props.maxLength}
+						minLength={props.minLength}
+						list={props.list}
+						pattern={props.pattern}
+						ref={props.ref}
+					/>
+					<div hidden={!props.sectionType || props.sectionType === "left"} className={styles.multi_section_right}>
+						{props.sectionRightIcon}
+					</div>
+				</div>
 				{getMessageText()}
 			</div>
 		</div>

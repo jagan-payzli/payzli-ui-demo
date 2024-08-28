@@ -1,6 +1,6 @@
 import React from "react";
 import Section from "../components/Section";
-import { Card } from "payzli-ui";
+import { Card } from "../components";
 
 const CardSection = () => {
 	return (

@@ -1,6 +1,6 @@
 import React from "react";
 import Section from "../components/Section";
-import { Accordion } from "payzli-ui";
+import { Accordion } from "../components";
 
 const AccordionSection = () => {
 	const [open, setOpen] = React.useState(false);

@@ -1,0 +1,37 @@
+export interface IMaskInputProps {
+	type: "text" | "number" | "email" | "password" | "tel" | "date";
+	mask?: string;
+	format?: string;
+	id: string;
+	value: string | number;
+	onChange: any;
+	className: string;
+	required: boolean;
+	formSubmitted: boolean;
+	name: string;
+	label: string;
+	errorMessage?: string;
+	formClass?: string;
+	prefix?: string;
+	suffix?: string;
+	disableCopyPaste?: boolean;
+	onFocus?: any;
+	onBlur?: any;
+	disabled?: boolean;
+	placeholder?: string;
+	isError?: (err: { [name: string]: string }) => void;
+	onCopy?: any;
+	onCut?: any;
+	onContextMenu?: any;
+	inputType?: "number-psssword";
+	allowNegative?: boolean;
+	skipValidation?: boolean;
+	transformPhrase?: (phrase: string, UiLanguage: string, params: any) => string;
+	UiLanguage?: string;
+	tooltip?: string;
+	hintText?: string;
+	sectionType?: "left" | "right" | "both";
+	sectionLeftIcon?: React.ReactNode;
+	sectionRightIcon?: React.ReactNode;
+	leftIconClass?: string;
+}

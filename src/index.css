@@ -877,10 +877,6 @@ select[aria-invalid="true"] {
 	overflow: auto;
 }
 
-.dropbtn {
-	cursor: pointer;
-}
-
 .plus-icon {
 	width: 35px;
 	height: 35px;
@@ -894,71 +890,6 @@ select[aria-invalid="true"] {
 	justify-content: center;
 	align-items: center;
 	margin-left: 0.25rem;
-}
-
-/* .dropbtn:hover,
-.dropbtn:focus {
-    border-color: currentColor !important;
-} */
-
-.dropdown {
-	position: relative;
-	display: inline-block;
-}
-
-.popup-content {
-	position: absolute;
-	min-width: 10rem;
-	overflow: auto;
-	z-index: 1000;
-	right: 0;
-	border-radius: 8px;
-	border: 1px solid #eaecf0;
-	background: #fff;
-	box-shadow: 0px 12px 16px -4px rgba(16, 24, 40, 0.08), 0px 4px 6px -2px rgba(16, 24, 40, 0.03);
-}
-.popup-content.right {
-	left: 100%;
-	right: auto;
-}
-.popup-content.top {
-	bottom: 0;
-	left: 0;
-}
-.popup-content.bottom-left {
-	right: 50%;
-	top: 100%;
-}
-.popup-content.bottom-right {
-	left: 50%;
-	top: 100%;
-}
-
-.dropdown-content {
-	display: none;
-	position: absolute;
-	background-color: #f1f1f1;
-	min-width: 10rem;
-	overflow: auto;
-	box-shadow: 1px 9px 1.3125rem rgb(53 143 207 / 10%);
-	z-index: 1000000;
-	right: 0;
-	border-radius: 10px;
-}
-.dropdown-content.right {
-	left: 100%;
-	right: auto;
-}
-
-.dropdown-content a {
-	color: black;
-	padding: 0.75rem 1rem;
-	text-decoration: none;
-	display: block;
-}
-
-.dropdown a:hover {
-	background-color: #ddd;
 }
 
 .filter-dropdown a:hover {
@@ -970,10 +901,6 @@ select[aria-invalid="true"] {
 	overflow: auto;
 }
 
-.dropbtn {
-	cursor: pointer;
-}
-
 .plus-icon {
 	width: 35px;
 	height: 35px;
@@ -987,16 +914,6 @@ select[aria-invalid="true"] {
 	justify-content: center;
 	align-items: center;
 	margin-left: 0.25rem;
-}
-
-/* .dropbtn:hover,
-.dropbtn:focus {
-    border-color: currentColor !important;
-} */
-
-.dropdown {
-	position: relative;
-	display: inline-block;
 }
 
 .popup-content {
@@ -1021,33 +938,6 @@ select[aria-invalid="true"] {
 .popup-content.bottom-right {
 	left: 50%;
 	top: 100%;
-}
-
-.dropdown-content {
-	display: none;
-	position: absolute;
-	background-color: #f1f1f1;
-	min-width: 10rem;
-	overflow: auto;
-	box-shadow: 1px 9px 1.3125rem rgb(53 143 207 / 10%);
-	z-index: 1000000;
-	right: 0;
-	border-radius: 10px;
-}
-.dropdown-content.right {
-	left: 100%;
-	right: auto;
-}
-
-.dropdown-content a {
-	color: black;
-	padding: 0.75rem 1rem;
-	text-decoration: none;
-	display: block;
-}
-
-.dropdown a:hover {
-	background-color: #ddd;
 }
 
 .filter-dropdown a:hover {
@@ -1844,4 +1734,7 @@ h4.main-comm-head,
 }
 .gap2 {
 	gap: 1rem;
+}
+[hidden] {
+	display: none !important;
 }

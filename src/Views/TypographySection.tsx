@@ -1,6 +1,6 @@
 import React from "react";
 import Section from "../components/Section";
-import { Card, Typography } from "payzli-ui";
+import { Card, Typography } from "../components";
 
 const TypographySection = () => {
 	return (

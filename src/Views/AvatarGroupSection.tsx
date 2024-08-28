@@ -1,4 +1,4 @@
-import { Avatar, AvatarGroup } from "payzli-ui";
+import { Avatar, AvatarGroup } from "../components";
 import Section from "../components/Section";
 
 const AvatarGroupSection = () => {

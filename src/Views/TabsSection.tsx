@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import Section from "../components/Section";
-import { Tabs, Tab } from "payzli-ui";
-import { Typography } from "payzli-ui";
 import { Heart } from "@phosphor-icons/react";
+import { Tab, Tabs, Typography } from "../components";
+import { useState } from "react";
+import Section from "../components/Section";
 
 const TabsSection = () => {
 	const [state, setState] = useState<any>({
@@ -21,11 +20,13 @@ const TabsSection = () => {
 					<Tab value="tab1" label="Tab 1" />
 					<Tab value="tab2" label="Tab 2" />
 					<Tab value="tab3" label="Tab 3" />
+					<Tab value="tab4" label="Tab 4" disabled={true} />
 				</Tabs>
 				<Tabs onChange={handleChange} className="w-100" value={state.button} type="button" size="md">
 					<Tab value="tab1" label="Tab 1" />
 					<Tab value="tab2" label="Tab 2" />
 					<Tab value="tab3" label="Tab 3" />
+					<Tab value="tab4" label="Tab 4" disabled={true} />
 				</Tabs>
 			</div>
 
@@ -35,11 +36,13 @@ const TabsSection = () => {
 					<Tab value="tab1" label="Tab 1" />
 					<Tab value="tab2" label="Tab 2" />
 					<Tab value="tab3" label="Tab 3" />
+					<Tab value="tab4" label="Tab 4" disabled={true} />
 				</Tabs>
 				<Tabs onChange={handleChange} className="w-100" value={state.primary} type="primary" size="md">
 					<Tab value="tab1" label="Tab 1" />
 					<Tab value="tab2" label="Tab 2" />
 					<Tab value="tab3" label="Tab 3" />
+					<Tab value="tab4" label="Tab 4" disabled={true} />
 				</Tabs>
 			</div>
 
@@ -49,11 +52,13 @@ const TabsSection = () => {
 					<Tab value="tab1" label="Tab 1" />
 					<Tab value="tab2" label="Tab 2" />
 					<Tab value="tab3" label="Tab 3" />
+					<Tab value="tab4" label="Tab 4" disabled={true} />
 				</Tabs>
 				<Tabs onChange={handleChange} className="w-100" value={state.secondary} type="secondary" size="md">
 					<Tab value="tab1" label="Tab 1" />
 					<Tab value="tab2" label="Tab 2" />
 					<Tab value="tab3" label="Tab 3" />
+					<Tab value="tab4" label="Tab 4" disabled={true} />
 				</Tabs>
 			</div>
 			<Typography>Tertiary Tabs - sm / md</Typography>
@@ -62,11 +67,13 @@ const TabsSection = () => {
 					<Tab value="tab1" label="Tab 1" />
 					<Tab value="tab2" label="Tab 2" />
 					<Tab value="tab3" label="Tab 3" />
+					<Tab value="tab4" label="Tab 4" disabled={true} />
 				</Tabs>
 				<Tabs onChange={handleChange} className="w-100" value={state.secondary} type="tertiary" size="md">
 					<Tab value="tab1" label="Tab 1" />
 					<Tab value="tab2" label="Tab 2" />
 					<Tab value="tab3" label="Tab 3" />
+					<Tab value="tab4" label="Tab 4" disabled={true} />
 				</Tabs>
 			</div>
 			<Typography>Underline Tabs - sm / md</Typography>
@@ -75,11 +82,13 @@ const TabsSection = () => {
 					<Tab value="tab1" label="Tab 1" />
 					<Tab value="tab2" label="Tab 2" />
 					<Tab value="tab3" label="Tab 3" badge={<Heart />} />
+					<Tab value="tab4" label="Tab 4" disabled={true} badge={"2"} />
 				</Tabs>
 				<Tabs onChange={handleChange} className="w-100" value={state.secondary} type="underline" size="md" fullwidth={true}>
 					<Tab value="tab1" label="Tab 1" />
 					<Tab value="tab2" label="Tab 2" />
 					<Tab value="tab3" label="Tab 3" badge={"3"} />
+					<Tab value="tab4" label="Tab 4" disabled={true} />
 				</Tabs>
 			</div>
 			<Typography>Underline Filled Tabs - sm / md</Typography>
@@ -88,11 +97,13 @@ const TabsSection = () => {
 					<Tab value="tab1" label="Tab 1" />
 					<Tab value="tab2" label="Tab 2" />
 					<Tab value="tab3" label="Tab 3" />
+					<Tab value="tab4" label="Tab 4" disabled={true} />
 				</Tabs>
 				<Tabs onChange={handleChange} className="w-100" value={state.secondary} type="underline-primary" size="md">
 					<Tab value="tab1" label="Tab 1" />
 					<Tab value="tab2" label="Tab 2" />
 					<Tab value="tab3" label="Tab 3" />
+					<Tab value="tab4" label="Tab 4" disabled={true} />
 				</Tabs>
 			</div>
 		</Section>

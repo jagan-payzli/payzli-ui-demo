@@ -1,0 +1,87 @@
+.accordian_card {
+	position: relative;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-ms-border-radius: 10px;
+	border-radius: 10px;
+	margin-bottom: 1.25rem;
+	padding: 0;
+	width: 100%;
+}
+
+.accordian_card .accordian_card_head {
+	padding: 1.25rem;
+}
+
+.accordian_body {
+	box-shadow: 1px 9px 1.3125rem rgb(53 143 207 / 10%);
+	padding-top: var(--spacing-md);
+	padding-bottom: var(--spacing-md);
+	-webkit-border-radius: 10px !important;
+	-moz-border-radius: 10px !important;
+	-ms-border-radius: 10px !important;
+	border-radius: 10px !important;
+}
+.accordian_header {
+	box-shadow: 1px 9px 1.3125rem rgb(53 143 207 / 10%);
+	padding-top: var(--spacing-md);
+	padding-bottom: var(--spacing-md);
+	-webkit-border-radius: 10px !important;
+	-moz-border-radius: 10px !important;
+	-ms-border-radius: 10px !important;
+	border-radius: 10px !important;
+	display: flex;
+	justify-content: space-between;
+	cursor: pointer;
+}
+
+.accordian_card h6 {
+	font-family: "medium";
+	font-size: 1rem;
+	color: #333;
+	margin-right: 0.9375rem;
+	margin-bottom: 0;
+}
+
+.accordian_card p {
+	font-size: 1rem;
+	margin-bottom: 0;
+	display: block;
+	width: calc(100% - 100px);
+}
+
+.accordian_card span i {
+	color: #ff4b4b;
+	font-size: 1.125rem;
+	cursor: pointer;
+}
+
+.flat_accordion {
+	border: none !important;
+	box-shadow: none !important;
+}
+.flat_accordion p {
+	width: fit-content !important;
+	font-size: 14px !important;
+}
+.flat_accordion label {
+	text-transform: capitalize !important;
+}
+
+.collapse {
+	display: none;
+}
+.collapse.show {
+	display: block;
+}
+.accordion_title {
+	text-transform: uppercase;
+	font-weight: "medium";
+	margin: 0;
+}
+.accordion_subtitle {
+	font-weight: "regular";
+	margin: 0;
+	font-size: 0.75rem;
+	color: var(--text-muted, #a7b3c4);
+}

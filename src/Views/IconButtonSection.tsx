@@ -1,6 +1,6 @@
 import React from "react";
 import Section from "../components/Section";
-import { IconButton } from "payzli-ui";
+import { IconButton } from "../components";
 import { defaultOnClick } from "../utils/functions";
 
 const IconButtonSection = () => {

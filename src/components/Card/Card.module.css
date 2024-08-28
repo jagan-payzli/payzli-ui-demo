@@ -1,0 +1,36 @@
+.card_container {
+	flex-shrink: 0;
+	align-self: stretch;
+	border-radius: var(--radius-xl, 0.75rem);
+	border: 1px solid var(--border-secondary, #eaecf0);
+	background: var(--bg-primary, #fff);
+	box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+}
+.card_container.xs {
+	padding: var(--spacing-xs, 0.5rem) var(--spacing-sm, 0.875rem);
+	gap: var(--spacing-xs, 0.5rem);
+}
+.card_container.sm {
+	padding: var(--spacing-sm, 0.65rem) var(--spacing-md, 1rem);
+	gap: var(--spacing-sm, 1rem);
+}
+.card_container.md {
+	padding: var(--spacing-md, 1rem) var(--spacing-lg, 1.25rem);
+	gap: var(--spacing-md, 1rem);
+}
+.card_container.lg {
+	padding: var(--spacing-lg, 1rem) var(--spacing-xl, 1.5rem);
+	gap: var(--spacing-lg, 1rem);
+}
+.card_container.xl {
+	padding: var(--spacing-xl, 1rem) var(--spacing-2xl, 1.75rem);
+	gap: var(--spacing-2xl, 1rem);
+}
+.card_container.xxl {
+	padding: var(--spacing-2xl, 1.25rem) var(--spacing-3xl, 2rem);
+	gap: var(--spacing-4xl, 2rem);
+}
+.card_container.xxxl {
+	padding: var(--spacing-3xl, 1.25rem) var(--spacing-4xl, 2.5rem);
+	gap: var(--spacing-4xl, 2rem);
+}

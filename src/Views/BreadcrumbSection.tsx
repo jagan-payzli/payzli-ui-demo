@@ -1,5 +1,5 @@
 import React from "react";
-import { Breadcrumbs } from "payzli-ui";
+import { Breadcrumbs } from "../components";
 import Section from "../components/Section";
 
 const BreadcrumbSection = () => {

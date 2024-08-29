@@ -48,8 +48,11 @@ export default {
 		},
 		target: {
 			control: { type: "object" },
-			description: "React node that triggers the popover.",
-			table: { summary: "React.ReactNode" }
+			description: "The React node that triggers the popup.",
+			table: {
+				defaultValue: { summary: "three dots" },
+				type: { summary: "React.ReactNode" }
+			}
 		},
 		iconContainerClass: {
 			control: { type: "text" },
@@ -90,14 +93,6 @@ export default {
 			description: "Ref for the popover component.",
 			table: { summary: "React.Ref<any>" }
 		}
-		// target: {
-		// 	control: { type: "object" },
-		// 	description: "The React node that triggers the popup.",
-		// 	table: {
-		// 		defaultValue: { summary: "three dots" },
-		// 		type: { summary: "React.ReactNode" }
-		// 	}
-		// }
 	}
 } as Meta;
 
@@ -130,5 +125,22 @@ PopupOnHover.args = {
 	position: "bottom-right",
 	parentClass: "p-2",
 	target: <Button variant="secondary" iconPosition="right" rightIcon={<CaretDown weight="bold" />} onClick={() => {}} label={"Hover Me"} />,
+	hoverTrigger: true
+};
+
+export const PopupOnHoverNoClose = Template.bind({});
+PopupOnHoverNoClose.args = {
+	position: "bottom-right",
+	parentClass: "p-2",
+	target: <Button variant="secondary" iconPosition="right" rightIcon={<CaretDown weight="bold" />} onClick={() => {}} label={"Hover Me"} />,
+	hoverTrigger: true,
+	disableHoverOut: true
+};
+
+export const PopupOnTitle = Template.bind({});
+PopupOnTitle.args = {
+	position: "bottom-right",
+	parentClass: "p-2",
+	title: "Hover Me",
 	hoverTrigger: true
 };

@@ -38,9 +38,9 @@ function App() {
 				</IconButton>
 			</header>
 			<div className="App-body">
-				<InputFieldSection />
-				{/* <SelectInput />
+				<SelectInput />
 				<PopoverSection />
+				<InputFieldSection />
 				<TabsSection />
 				<ButtonSection />
 				<IconButtonSection />
@@ -49,7 +49,7 @@ function App() {
 				<AvatarSection />
 				<AvatarGroupSection />
 				<CardSection />
-				<TypographySection /> */}
+				<TypographySection />
 				<br />
 				<br />
 				<br />

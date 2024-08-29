@@ -9,6 +9,7 @@ interface IRefProps {
 	openPopup(): void;
 }
 const DropButton: React.FC<IDropButtonProps> = forwardRef((props: IDropButtonProps, ref?: Ref<IRefProps>) => {
+	console.log("props", props);
 	const [counter, setCounter] = useState<number>();
 	const popupRef = useRef<HTMLDivElement>(null);
 	const [popupVisible, setPopupVisible] = useState(false);
@@ -66,12 +67,12 @@ const DropButton: React.FC<IDropButtonProps> = forwardRef((props: IDropButtonPro
 		}
 	};
 	return (
-		<div ref={popupRef} className={`${popoverStyles.dropdown} ${props.dropdownClass || ""}`} title={props.mouseoverTitle ?? ""}>
+		<div ref={popupRef} className={`${popoverStyles.dropdown} ${props.dropdownClass ?? ""}`} title={props.mouseoverTitle ?? ""}>
 			<div className={buttonStyles.dropdown_button_container}>
 				<button
 					className={`${buttonStyles.button} ${buttonStyles.type_button} ${buttonStyles[`button_${props.variant}`]} ${
 						props.className ?? ""
-					} ${buttonStyles[`type_${props.buttonType ?? "button"}`]}`}
+					} ${buttonStyles.type_dropdown}`}
 					onClick={props.onClick}
 					type="button"
 					id={props.id ?? ""}
@@ -89,14 +90,14 @@ const DropButton: React.FC<IDropButtonProps> = forwardRef((props: IDropButtonPro
 					onMouseEnter={(e) => handleMouseEnter(e)}
 					onMouseLeave={(e) => handleMouseLeave(e)}
 					onClick={onClick}
-					className={`${popoverStyles.dropbtn} ${props.iconContainerClass || ""}`}
+					className={`${popoverStyles.dropbtn} ${props.iconContainerClass ?? ""}`}
 				>
 					<button
 						className={`${buttonStyles.button} ${buttonStyles.dropdown_icon_button} ${buttonStyles.type_button} ${
 							buttonStyles[`button_${props.variant}`]
 						}`}
 						type="button"
-						disabled={props.disabled}
+						disabled={props.disableDropBtn}
 						style={props.dropdownStyles ?? {}}
 						ref={props.ref}
 					>
@@ -106,8 +107,8 @@ const DropButton: React.FC<IDropButtonProps> = forwardRef((props: IDropButtonPro
 			</div>
 			<HideComponentWrapper hidden={!popupVisible}>
 				<div
-					style={props.parentStyle || {}}
-					className={`${popoverStyles.popup_content} ${popoverStyles[props.position || "bottom"]} ${props.parentClass || ""}`}
+					style={props.parentStyle ?? {}}
+					className={`${popoverStyles.popup_content} ${popoverStyles[props.position ?? "bottom"]} ${props.parentClass ?? ""}`}
 				>
 					{props.children}
 				</div>

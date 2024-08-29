@@ -1,7 +1,6 @@
 // src/components/Button.stories.tsx
-import { Circle } from "@phosphor-icons/react";
 import { Meta, StoryObj } from "@storybook/react";
-import { Button, IButtonProps, ITypography, Typography } from "../main"; // Adjust the import path as needed
+import { ITypography, Typography } from "../main"; // Adjust the import path as needed
 
 export default {
 	title: "payzli-ui/Components/Typography",

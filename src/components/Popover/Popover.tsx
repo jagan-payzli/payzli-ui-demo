@@ -1,4 +1,4 @@
-import { CaretRight, DotsThree } from "@phosphor-icons/react";
+import { DotsThree } from "@phosphor-icons/react";
 import React, { forwardRef, Ref, useEffect, useImperativeHandle, useRef, useState } from "react";
 import { IPopoverProps } from "../../models/IPopoverProps";
 import HideComponentWrapper from "../HideComponentWrapper";
@@ -65,7 +65,7 @@ const Popover: React.FC<IPopoverProps> = forwardRef((props: IPopoverProps, ref?:
 					onMouseEnter={(e) => handleMouseEnter(e)}
 					onMouseLeave={(e) => handleMouseLeave(e)}
 					onClick={onClick}
-					className={`${styles.dropbtn} ${props.iconContainerClass || ""}`}
+					className={`${styles.dropbtn} ${props.iconContainerClass ?? ""}`}
 				>
 					{props.target}
 				</div>
@@ -76,10 +76,9 @@ const Popover: React.FC<IPopoverProps> = forwardRef((props: IPopoverProps, ref?:
 					onMouseEnter={(e) => handleMouseEnter(e)}
 					onMouseLeave={(e) => handleMouseLeave(e)}
 					onClick={onClick}
-					className={`${styles.dropbtn} d-flex align-items-center font-regular ${props.titleClass || ""}`}
+					className={`${styles.dropbtn} d-flex align-items-center font-regular ${props.titleClass ?? ""}`}
 				>
 					{props.title}
-					<CaretRight className={styles.dropbtn} />
 				</div>
 			);
 		} else
@@ -90,12 +89,12 @@ const Popover: React.FC<IPopoverProps> = forwardRef((props: IPopoverProps, ref?:
 			);
 	};
 	return (
-		<div ref={popupRef} className={`${styles.dropdown} ${props.dropdownClass || ""}`} title={props.mouseoverTitle ?? ""}>
+		<div ref={popupRef} className={`${styles.dropdown} ${props.dropdownClass ?? ""}`} title={props.mouseoverTitle ?? ""}>
 			{renderComponent()}
 			<HideComponentWrapper hidden={!popupVisible}>
 				<div
-					style={props.parentStyle || {}}
-					className={`${styles.popup_content} ${styles[props.position || "bottom-right"]} ${props.parentClass || ""}`}
+					style={props.parentStyle ?? {}}
+					className={`${styles.popup_content} ${styles[props.position ?? "bottom-right"]} ${props.parentClass ?? ""}`}
 				>
 					{props.children}
 				</div>

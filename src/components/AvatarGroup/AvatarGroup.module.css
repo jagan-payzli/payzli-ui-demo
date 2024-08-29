@@ -29,6 +29,7 @@
 	align-items: center;
 	height: fit-content;
 	width: fit-content;
+	cursor: pointer;
 }
 .avatar_group .avatar_icon .more_avatar {
 	color: #475467;

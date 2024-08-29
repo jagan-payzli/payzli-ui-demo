@@ -1,7 +1,6 @@
 // src/components/Button.stories.tsx
 import { Meta, StoryFn } from "@storybook/react";
-import { Avatar, AvatarGroup, IAvatarGroup, ITabGroup, Tab, Tabs } from "../main"; // Adjust the import path as needed
-import { useState } from "react";
+import { Avatar, AvatarGroup, IAvatarGroup } from "../main"; // Adjust the import path as needed
 
 export default {
 	title: "payzli-ui/Components/AvatarGroup",

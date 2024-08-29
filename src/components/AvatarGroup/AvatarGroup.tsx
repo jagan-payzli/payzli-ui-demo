@@ -3,6 +3,7 @@ import { IAvatarGroup } from "../../models/IAvatarGroup";
 import Avatar from "../Avatar/Avatar";
 import HideComponentWrapper from "../HideComponentWrapper";
 import styles from "./AvatarGroup.module.css";
+import { Plus } from "@phosphor-icons/react";
 
 const AvatarGroup: React.FC<IAvatarGroup> = ({ children, ...props }: IAvatarGroup) => {
 	const maxAvatar = props.max || 4;
@@ -32,6 +33,12 @@ const AvatarGroup: React.FC<IAvatarGroup> = ({ children, ...props }: IAvatarGrou
 		props.plusIconHeight = "4rem";
 		props.plusIconSize = "2rem";
 	}
+	const handleClickMore = (event: any) => {
+		event.stopPropagation();
+		if (props.handleClickMore) {
+			props.handleClickMore(event);
+		}
+	};
 
 	return (
 		<div ref={props.ref} className={styles.avatar_group_cont}>
@@ -50,7 +57,7 @@ const AvatarGroup: React.FC<IAvatarGroup> = ({ children, ...props }: IAvatarGrou
 								size={props.size}
 								src_text={`+${children.length - maxAvatar}`}
 								id={"avatar-more-number"}
-								onClick={props.handleClickMore}
+								onClick={handleClickMore}
 								image_hash={""}
 								mime_type={""}
 							/>
@@ -64,7 +71,7 @@ const AvatarGroup: React.FC<IAvatarGroup> = ({ children, ...props }: IAvatarGrou
 					className={styles.add_member_icon}
 					style={{ height: props.plusIconHeight, width: props.plusIconWidth }}
 				>
-					<i style={{ fontSize: props.plusIconSize }} className="ph-bold ph-plus"></i>
+					<Plus size={props.plusIconSize} weight="bold" className={props.iconClass} />
 				</div>
 			</HideComponentWrapper>
 		</div>

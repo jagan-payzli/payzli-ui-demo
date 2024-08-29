@@ -1,10 +1,10 @@
-// src/components/Button.stories.tsx
+import React from "react";
 import { Heart } from "@phosphor-icons/react";
 import { Meta, StoryObj } from "@storybook/react";
-import { IconButton, IIconButtonProps } from "../main"; // Adjust the import path as needed
+import { IconButton, IIconButtonProps } from "../../main"; // Adjust the import path as needed
 
 export default {
-	title: "payzli-ui/Components/IconButton",
+	title: "payzli-ui/Components/buttons/IconButton",
 	component: IconButton,
 	tags: ["autodocs", "test"],
 	parameters: {
@@ -12,25 +12,49 @@ export default {
 		layout: "centered"
 	},
 	argTypes: {
+		onClick: {
+			action: "onClick",
+			table: {
+				type: { summary: "function" },
+				defaultValue: { summary: "(event: React.MouseEvent<HTMLButtonElement>) => void" }
+			}
+		},
+
 		variant: {
 			control: { type: "inline-radio" },
-			options: ["primary", "secondary", "tertiary", "none"]
+			options: ["primary", "secondary", "tertiary", "none"],
+			description: "The button's visual style variant."
 		},
-		size: {
+		className: {
 			control: { type: "text" }
 		},
 		buttonType: {
-			control: { type: "inline-radio" },
-			options: ["button", "text"]
+			control: { type: "radio" },
+			options: ["button", "text"],
+			description: "Specifies the button's type."
 		},
-		disabled: {
-			control: { type: "boolean" }
+		size: {
+			control: { type: "text" },
+			description: "Define icon size in px or rem etc."
 		},
 		id: {
 			control: { type: "text" }
 		},
-		className: {
-			control: { type: "text" }
+		disabled: {
+			control: { type: "boolean" },
+			description: "Disables the button when true.",
+			table: { summary: "boolean", defaultValue: { summary: "false" } }
+		},
+
+		children: {
+			control: { type: "object" },
+			description: "Icon/Image to render inside the button.",
+			table: { summary: "React.ReactNode" }
+		},
+		ref: {
+			control: { type: "object" },
+			description: "Ref for the button component.",
+			table: { summary: "React.Ref<any>" }
 		}
 	}
 } as Meta<IIconButtonProps>;

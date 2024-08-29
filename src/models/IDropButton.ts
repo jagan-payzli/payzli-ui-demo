@@ -11,4 +11,5 @@ export interface IDropButtonProps extends IButtonProps {
 	mouseoverTitle?: string; // title for the DropButton component
 	disableHoverOut?: boolean; // if you don't want to close the popup on mouse out
 	position?: "left" | "right" | "bottom" | "bottom-left" | "bottom-right" | "top"; // position of the popup
+	disableDropBtn?: boolean; // disable the dropdown button
 }

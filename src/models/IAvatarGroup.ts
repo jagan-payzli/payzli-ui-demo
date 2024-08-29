@@ -12,4 +12,5 @@ export interface IAvatarGroup {
 	plusIconWidth?: string;
 	plusIconHeight?: string;
 	ref?: any;
+	iconClass?: string;
 }

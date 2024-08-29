@@ -71,4 +71,5 @@ const AvatarGroup: React.FC<IAvatarGroup> = ({ children, ...props }: IAvatarGrou
 	);
 };
 
+AvatarGroup.displayName = "AvatarGroup";
 export default AvatarGroup;

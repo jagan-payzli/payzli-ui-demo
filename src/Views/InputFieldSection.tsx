@@ -53,6 +53,7 @@ const InputFieldSection = () => {
 			<div className="d-flex justify-content-end">
 				<Button onClick={handleSubmit} label={"Form Submit"} variant={"primary"} />
 			</div>
+
 			<Typography className="bold">Textarea </Typography>
 			<div className="d-flex flex-wrap gap1 divider">
 				<Textarea
@@ -78,7 +79,7 @@ const InputFieldSection = () => {
 					formSubmitted={formSubmitted}
 					name={"textarea2"}
 					label={"Textarea"}
-					max={100}
+					maxLength={100}
 				/>
 				<Textarea
 					id={"textarea3"}
@@ -127,7 +128,6 @@ const InputFieldSection = () => {
 			<Typography className="bold">Card Input </Typography>
 			<div className="d-flex flex-wrap gap1 divider">
 				<CardInput
-					type={"number"}
 					id={"cardInput"}
 					name={"cardInput"}
 					label={"Card Input"}
@@ -141,7 +141,6 @@ const InputFieldSection = () => {
 					format="#### #### #### ####"
 					mask="_"
 					cardIcon={<img src={CardIcon} width={"100%"} height={"auto"} alt="Mastercard" />}
-					type={"number"}
 					id={"cardInput2"}
 					name={"cardInput2"}
 					label={"Card Input"}
@@ -155,7 +154,6 @@ const InputFieldSection = () => {
 				<CardInput
 					format="#### #### #### ####"
 					mask=""
-					type={"number"}
 					id={"cardInput4"}
 					name={"cardInput4"}
 					label={"Card Input"}
@@ -167,7 +165,6 @@ const InputFieldSection = () => {
 					tooltip="Note: pass sectionLeftIcon & sectionType='left'"
 				/>
 				<CardInput
-					type={"number"}
 					id={"cardInput3"}
 					name={"cardInput3"}
 					label={"Card Input"}
@@ -187,7 +184,6 @@ const InputFieldSection = () => {
 					countryCodeOptions={countryCodeOptions}
 					selectedCountryCode={state.selectedCountryCode}
 					handleSelectCountryCode={(item) => handleSelect(item, "selectedCountryCode")}
-					type="tel"
 					id={"phoneNumber"}
 					name={"phoneNumber"}
 					label={"PhoneNumber Input"}
@@ -196,22 +192,22 @@ const InputFieldSection = () => {
 					className={""}
 					required={false}
 					formSubmitted={formSubmitted}
-					placeholder="+1 (___) ___-____"
-					mask=" "
+					placeholder="Enter phone number"
+					// placeholder="+1 (___) ___-____"
+					// mask=" "
 					tooltip="Note: pass sectionLeftIcon & sectionType='left'"
 				/>
 				<PhoneNumberInput
 					countryCodeOptions={countryCodeOptions}
 					selectedCountryCode={state.selectedCountryCode}
 					handleSelectCountryCode={(item) => handleSelect(item, "selectedCountryCode")}
-					type="tel"
-					id={"phoneNumber"}
-					name={"phoneNumber"}
+					id={"phoneNumber2"}
+					name={"phoneNumber2"}
 					label={"PhoneNumber Input"}
-					value={state.phoneNumber}
+					value={state.phoneNumber2}
 					onChange={handleChange}
 					className={""}
-					required={false}
+					required={true}
 					formSubmitted={formSubmitted}
 					// placeholder="+1 (___) ___-____"
 					// mask="_"
@@ -221,11 +217,10 @@ const InputFieldSection = () => {
 					countryCodeOptions={countryCodeOptions}
 					selectedCountryCode={state.selectedCountryCode}
 					handleSelectCountryCode={(item) => handleSelect(item, "selectedCountryCode")}
-					type="tel"
-					id={"phoneNumber"}
-					name={"phoneNumber"}
+					id={"phoneNumber3"}
+					name={"phoneNumber3"}
 					label={"PhoneNumber Input"}
-					value={state.phoneNumber}
+					value={state.phoneNumber3}
 					onChange={handleChange}
 					className={""}
 					required={false}
@@ -239,6 +234,18 @@ const InputFieldSection = () => {
 			<div className="d-flex flex-wrap gap1 divider">
 				<MaskInput
 					type={"number"}
+					id={"maskInput"}
+					name={"maskInput"}
+					label={"Mask Input"}
+					value={state.maskInput}
+					onChange={handleChange}
+					className={""}
+					required={false}
+					formSubmitted={formSubmitted}
+					placeholder="write..."
+					tooltip="Note: pass sectionRightIcon & sectionType='right'"
+				/>
+				<MaskInput
 					id={"maskInput"}
 					name={"maskInput"}
 					label={"Mask Input"}
@@ -267,7 +274,6 @@ const InputFieldSection = () => {
 				<MaskInput
 					format="+91 (###) ###-####"
 					placeholder="+91 (###) ###-####"
-					mask=" "
 					type={"number"}
 					id={"maskInput3"}
 					name={"maskInput3"}
@@ -298,6 +304,7 @@ const InputFieldSection = () => {
 					required={false}
 					formSubmitted={formSubmitted}
 					tooltip="Note: pass sectionRightIcon & sectionType='right'"
+					decimalPlace={2}
 				/>
 				<AmountInput
 					id={"amount"}
@@ -315,6 +322,7 @@ const InputFieldSection = () => {
 					required={true}
 					formSubmitted={formSubmitted}
 					tooltip="Note: pass sectionRightIcon & sectionType='right'"
+					decimalPlace={3}
 				/>
 				<AmountInput
 					id={"amount"}
@@ -333,6 +341,9 @@ const InputFieldSection = () => {
 					formSubmitted={formSubmitted}
 					tooltip="Note: pass sectionRightIcon & sectionType='right'"
 					disableCurrency={true}
+					decimalPlace={2}
+					showDecimalPlaceholder={true}
+					fixedDecimalScale={true}
 				/>
 				<AmountInput
 					id={"amount"}
@@ -379,6 +390,7 @@ const InputFieldSection = () => {
 					type={"text"}
 					id={"copy"}
 					label={"Copy url"}
+					fieldType="url"
 					placeholder="write..."
 					value={state.website}
 					sectionType="right"
@@ -397,6 +409,7 @@ const InputFieldSection = () => {
 					type={"text"}
 					id={"copy"}
 					label={"Copy url"}
+					fieldType="url"
 					placeholder="write..."
 					value={state.website}
 					sectionType="both"

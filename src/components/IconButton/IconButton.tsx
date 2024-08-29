@@ -21,4 +21,5 @@ const IconButton: React.FC<IIconButtonProps> = (props: IIconButtonProps) => {
 	);
 };
 
+IconButton.displayName = "IconButton";
 export default IconButton;

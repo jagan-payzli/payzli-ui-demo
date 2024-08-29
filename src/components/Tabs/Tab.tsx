@@ -17,4 +17,5 @@ const Tab: React.FC<ITab> = (props: ITab) => {
 	);
 };
 
+Tab.displayName = "Tab";
 export default Tab;

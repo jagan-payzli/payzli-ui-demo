@@ -4,11 +4,12 @@ import { IHideComponentWrapper } from "../../models/IHideComponentWrapper";
 const HideComponentWrapper: React.FC<IHideComponentWrapper> = ({
 	hidden = false,
 	noPermission = false,
+	placeholder,
 	show = true,
 	...props
 }: IHideComponentWrapper) => {
 	if (hidden) {
-		return <React.Fragment></React.Fragment>;
+		return <React.Fragment>{placeholder ?? <></>}</React.Fragment>;
 	} else if (noPermission) {
 		return (
 			<div className="w-100" ref={props.ref}>
@@ -23,8 +24,9 @@ const HideComponentWrapper: React.FC<IHideComponentWrapper> = ({
 	} else if (show && !hidden) {
 		return <React.Fragment>{props.children}</React.Fragment>;
 	} else {
-		return <React.Fragment></React.Fragment>;
+		return <React.Fragment>{placeholder ?? <></>}</React.Fragment>;
 	}
 };
 
+HideComponentWrapper.displayName = "HideComponentWrapper";
 export default HideComponentWrapper;

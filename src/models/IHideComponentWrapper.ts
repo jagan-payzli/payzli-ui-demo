@@ -5,4 +5,5 @@ export interface IHideComponentWrapper {
 	noPermission?: boolean; // use this only if you want to show permission error.
 	label?: string;
 	ref?: any;
+	placeholder?: any;
 }

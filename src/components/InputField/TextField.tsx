@@ -1,8 +1,8 @@
-import { EMAIL_REGEX, phrases, URL_REGEX } from "../../constant";
 import React, { useEffect, useState } from "react";
-import styles from "./InputField.module.css";
-import HideComponentWrapper from "../HideComponentWrapper";
+import { EMAIL_REGEX, phrases, URL_REGEX } from "../../constant";
 import { ITextField } from "../../models";
+import HideComponentWrapper from "../HideComponentWrapper";
+import styles from "./InputField.module.css";
 
 const TextField: React.FC<ITextField> = ({ ...props }: ITextField) => {
 	const [error, setError] = useState(props.errorMessage);
@@ -162,4 +162,5 @@ const numbericModeByType: any = {
 	"": "text"
 };
 
+TextField.displayName = "TextField";
 export default React.memo(TextField);

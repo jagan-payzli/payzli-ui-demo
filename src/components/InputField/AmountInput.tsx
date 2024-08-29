@@ -1,25 +1,21 @@
+import { CaretDown, CaretUp } from "@phosphor-icons/react";
 import React from "react";
-import { INumberInput, ISelectInput } from "../../models";
-import { PopupSelect, Button, NumberInput, Typography } from "../../components";
-import { CaretDown } from "@phosphor-icons/react";
+import { Button, NumberInput, PopupSelect, Typography } from "../../components";
+import { IAmountInputProps, ISelectInput } from "../../models";
 import styles from "./InputField.module.css";
-interface IAmountInputProps extends INumberInput {
-	handleSelectCurrency?: (value: ISelectInput) => void;
-	currencyOptions?: ISelectInput[];
-	selectedCurrency?: ISelectInput;
 
-	popupParentClass?: string;
-	isLoading?: boolean;
-	disableCurrency?: boolean;
-}
 const defaultCurrency: ISelectInput = {
 	value: "USD",
 	label: "USD",
 	symbol: "$"
 };
 const AmountInput: React.FC<IAmountInputProps> = (props: IAmountInputProps) => {
+	const [popupVisible, setPopupVisible] = React.useState(false);
 	const { selectedCurrency = defaultCurrency, handleSelectCurrency = () => {}, currencyOptions = [], ...otherProps } = props;
 
+	const handlePopupVisible = (visible: boolean) => {
+		setPopupVisible(visible);
+	};
 	return (
 		<div>
 			<NumberInput
@@ -40,7 +36,13 @@ const AmountInput: React.FC<IAmountInputProps> = (props: IAmountInputProps) => {
 								label={""}
 								variant={"none"}
 								iconPosition="right"
-								rightIcon={<CaretDown size={"1.25rem"} className="icon-color" weight="bold" />}
+								rightIcon={
+									popupVisible ? (
+										<CaretUp size={"1.25rem"} className="icon-color" weight="bold" />
+									) : (
+										<CaretDown size={"1.25rem"} className="icon-color" weight="bold" />
+									)
+								}
 								onClick={() => {}}
 								className="pl-1"
 								disabled={props.disableCurrency}
@@ -55,6 +57,7 @@ const AmountInput: React.FC<IAmountInputProps> = (props: IAmountInputProps) => {
 						selectOptions={currencyOptions}
 						popupParentClass={props.popupParentClass}
 						isLoading={props.isLoading}
+						handlePopupVisible={handlePopupVisible}
 					/>
 				}
 			/>
@@ -67,4 +70,5 @@ const housandsGroupStyleEnum: any = {
 	WAN: "wan",
 	USD: "thousand"
 };
+AmountInput.displayName = "AmountInput";
 export default AmountInput;

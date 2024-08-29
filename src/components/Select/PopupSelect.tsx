@@ -83,6 +83,7 @@ const PopupSelect: React.FC<IPopupSelect> = (props: IPopupSelect) => {
 			target={props.target}
 			ref={props.ref || viewPopupRef}
 			parentClass={`${styles.popup_select_cont} ${props.popupParentClass ?? "mt-1"}`}
+			handlePopupVisible={props.handlePopupVisible}
 		>
 			<Select
 				autoFocus
@@ -104,4 +105,5 @@ const PopupSelect: React.FC<IPopupSelect> = (props: IPopupSelect) => {
 	);
 };
 
+PopupSelect.displayName = "PopupSelect";
 export default PopupSelect;

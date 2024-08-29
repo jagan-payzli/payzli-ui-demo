@@ -68,6 +68,7 @@
 	padding: var(--spacing-lg);
 	gap: var(--spacing-md);
 	opacity: 0px;
+	border-bottom: 2px solid transparent;
 }
 .tab_underline .tab_item:hover,
 .tab_underline .tab_item.active {

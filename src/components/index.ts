@@ -9,8 +9,8 @@ export { default as Card } from "./Card";
 export { default as Typography } from "./Typography";
 export { default as Tabs } from "./Tabs/Tabs";
 export { default as Tab } from "./Tabs/Tab";
-export { NumberInput, AmountInput, InputField, MaskInput, PhoneNumberInput } from "./InputField";
-export { PopupSelect } from "./Select";
-export { Popover } from "./Popover";
+export { InputField, NumberInput, AmountInput, MaskInput, PhoneNumberInput, CardInput, Textarea } from "./InputField";
+export * from "./Select";
+export * from "./Popover";
 
 export * from "../constant";

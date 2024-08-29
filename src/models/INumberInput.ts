@@ -1,3 +1,5 @@
+import { ISelectInput } from ".";
+
 export interface INumberInput {
 	id: string; // unique id for input field
 	value: string | number;
@@ -43,4 +45,16 @@ export interface INumberInput {
 	inputType?: "amount" | "number";
 	thousandSeparator?: boolean;
 	thousandsGroupStyle?: "thousand" | "lakh" | "wan";
+	showDecimalPlaceholder?: boolean; // if true then only it will show decimal placeholder
+	fixedDecimalScale?: boolean; // this will fix desimal scale and default 00 will be shown
+}
+
+export interface IAmountInputProps extends INumberInput {
+	handleSelectCurrency?: (value: ISelectInput) => void;
+	currencyOptions?: ISelectInput[];
+	selectedCurrency?: ISelectInput;
+
+	popupParentClass?: string;
+	isLoading?: boolean;
+	disableCurrency?: boolean;
 }

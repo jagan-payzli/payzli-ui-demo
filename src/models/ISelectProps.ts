@@ -28,4 +28,5 @@ export interface IPopupSelect {
 	CustomOption?: React.FC<any>;
 	ref?: any;
 	isLoading?: boolean;
+	handlePopupVisible?: (visible: boolean) => void;
 }

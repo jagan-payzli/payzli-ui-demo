@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import Section from "../components/Section";
-import { Button, PopupSelect, Typography } from "../components";
 import { CaretDown } from "@phosphor-icons/react";
+import { useState } from "react";
+import { Button, PopupSelect, Typography } from "../components";
+import Section from "../components/Section";
 import { ISelectInput } from "../models";
 
-const SelectInput = () => {
+const ISelectPopup = () => {
 	const [selected, setSelected] = useState<ISelectInput | null>(null);
 	const handleSelect = (event: ISelectInput) => {
 		setSelected(event);
@@ -39,4 +39,4 @@ const SelectInput = () => {
 	);
 };
 
-export default SelectInput;
+export default ISelectPopup;

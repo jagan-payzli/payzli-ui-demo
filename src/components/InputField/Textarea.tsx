@@ -1,43 +1,13 @@
-import { EMAIL_REGEX, phrases, URL_REGEX } from "../../constant";
 import React, { useEffect, useState } from "react";
+import { phrases } from "../../constant";
+import { HideComponentWrapper } from "../../components";
 import styles from "./InputField.module.css";
-import HideComponentWrapper from "../HideComponentWrapper";
-import { ITextField } from "../../models";
-interface ITextareaProps {
-	id: string;
-	rows: number;
-	value: string | number;
-	onChange: any;
-	className: string;
-	required: boolean;
-	formSubmitted: boolean;
-	name: string;
-	label: string;
-	lang?: string;
-	errorMessage?: string;
-	formClass?: string;
-	min?: number;
-	max?: number;
-	maxLength?: number;
-	minLength?: number;
-	icon?: "currency" | "percentage";
-	onBlur?: any;
-	disabled?: boolean;
-	hideMaxLength?: boolean;
-	maxLengthPos?: "bottom" | "top" | "bottom_left";
-	placeholder?: string;
-	customPosClassName?: string;
-	transformPhrase?: (phrase: string, lang: string, params: any) => string;
-	UiLanguage?: string;
-	hintText?: string;
-	ref?: any;
-}
+import { ITextareaProps } from "../../models";
+
 const Textarea: React.FC<ITextareaProps> = ({ ...props }: ITextareaProps) => {
 	const [error, setError] = useState(props.errorMessage);
 	const [value, setValue] = useState(props.value || "");
 	const optionalProps: any = {};
-	if (props.min) optionalProps["min"] = props.min;
-	if (props.max) optionalProps["max"] = props.max;
 	if (props.maxLength) optionalProps["maxLength"] = props.maxLength;
 	if (props.minLength) optionalProps["minLength"] = props.minLength;
 	useEffect(() => {
@@ -125,4 +95,5 @@ const Textarea: React.FC<ITextareaProps> = ({ ...props }: ITextareaProps) => {
 	);
 };
 
+Textarea.displayName = "Textarea";
 export default Textarea;

@@ -27,4 +27,5 @@ const Tabs: React.FC<ITabGroup> = (props: ITabGroup) => {
 	);
 };
 
+Tabs.displayName = "Tabs";
 export default Tabs;

@@ -1,15 +1,14 @@
+import { CaretRight, DotsThree } from "@phosphor-icons/react";
 import React, { forwardRef, Ref, useEffect, useImperativeHandle, useRef, useState } from "react";
+import { IPopoverProps } from "../../models/IPopoverProps";
 import HideComponentWrapper from "../HideComponentWrapper";
 import styles from "./Popover.module.css";
-import { CaretRight, DotsThree } from "@phosphor-icons/react";
-import { ISelectProps } from "../../models";
-import { IPopoverProps } from "../../models/IPopoverProps";
 
 interface IRefProps {
 	closePopup(): void;
 	openPopup(): void;
 }
-const Popover = forwardRef((props: IPopoverProps, ref?: Ref<IRefProps>) => {
+const Popover: React.FC<IPopoverProps> = forwardRef((props: IPopoverProps, ref?: Ref<IRefProps>) => {
 	const [counter, setCounter] = useState<number>();
 	const popupRef = useRef<HTMLDivElement>(null);
 	const [popupVisible, setPopupVisible] = useState(false);
@@ -20,6 +19,9 @@ const Popover = forwardRef((props: IPopoverProps, ref?: Ref<IRefProps>) => {
 			document.removeEventListener("mousedown", handleOutsideClick);
 		};
 	}, []);
+	useEffect(() => {
+		props.handlePopupVisible && props.handlePopupVisible(popupVisible);
+	}, [popupVisible]);
 
 	useEffect(() => {
 		if (counter && popupVisible) {
@@ -102,4 +104,5 @@ const Popover = forwardRef((props: IPopoverProps, ref?: Ref<IRefProps>) => {
 	);
 });
 
+Popover.displayName = "Popover";
 export default Popover;

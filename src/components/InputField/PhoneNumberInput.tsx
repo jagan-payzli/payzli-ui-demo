@@ -1,18 +1,8 @@
+import { CaretDown, CaretUp } from "@phosphor-icons/react";
 import React from "react";
 import { Button, MaskInput, PopupSelect, Typography } from "../../components";
-import { ISelectInput } from "../../models";
-import { IMaskInputProps } from "../../models/IMaskInputProps";
-import styles from "./InputField.module.css";
-import { CaretDown } from "@phosphor-icons/react";
-interface IPhoneInput extends IMaskInputProps {
-	handleSelectCountryCode: (value: ISelectInput) => void;
-	countryCodeOptions: ISelectInput[];
-	selectedCountryCode: ISelectInput;
+import { IPhoneInput } from "../../models/IMaskInputProps";
 
-	popupParentClass?: string;
-	isLoading?: boolean;
-	disableCurrency?: boolean;
-}
 const defaultCountryCode = {
 	value: "US",
 	label: "US",
@@ -25,18 +15,21 @@ const PhoneNumberInput: React.FC<IPhoneInput> = (props: IPhoneInput) => {
 		selectedCountryCode = defaultCountryCode,
 		handleSelectCountryCode = () => {},
 		countryCodeOptions = [],
-		type = "tel",
 		mask = "_",
-		value = defaultCountryCode.value,
-		label = defaultCountryCode.label,
+		value,
+		label,
 		onChange,
 		className,
 		...otherProps
 	} = props;
+	const [popupVisible, setPopupVisible] = React.useState(false);
+	const handlePopupVisible = (visible: boolean) => {
+		setPopupVisible(visible);
+	};
 	return (
 		<MaskInput
 			{...otherProps}
-			type={type}
+			type={"tel"}
 			mask={mask}
 			format={selectedCountryCode.format}
 			value={value}
@@ -51,12 +44,18 @@ const PhoneNumberInput: React.FC<IPhoneInput> = (props: IPhoneInput) => {
 							label={""}
 							variant={"none"}
 							iconPosition="right"
-							rightIcon={<CaretDown size={"1.25rem"} className="icon-color" weight="bold" />}
+							rightIcon={
+								popupVisible ? (
+									<CaretUp size={"1.25rem"} className="py_icon_color" weight="bold" />
+								) : (
+									<CaretDown size={"1.25rem"} className="py_icon_color" weight="bold" />
+								)
+							}
 							onClick={() => {}}
-							className="pr-0"
+							className="pr-0 py_currency_code_btn"
 							disabled={props.disableCurrency || props.disabled}
 						>
-							<Typography size="md" fontFamily="regular" color="secondary">
+							<Typography className="py_currency_code" size="md" fontFamily="regular" color="secondary">
 								{selectedCountryCode.label || "USD"}
 							</Typography>
 						</Button>
@@ -66,10 +65,11 @@ const PhoneNumberInput: React.FC<IPhoneInput> = (props: IPhoneInput) => {
 					selectOptions={countryCodeOptions}
 					popupParentClass={props.popupParentClass}
 					isLoading={props.isLoading}
+					handlePopupVisible={handlePopupVisible}
 				/>
 			}
 		/>
 	);
 };
-
+PhoneNumberInput.displayName = "PhoneNumberInput";
 export default PhoneNumberInput;

@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import NumberFormat from "react-number-format";
 import styles from "./InputField.module.css";
-import HideComponentWrapper from "../HideComponentWrapper";
+import { HideComponentWrapper } from "../../components";
 import { phrases } from "../../constant";
 import { INumberInput } from "../../models";
 
 const DEFAULT_MAX = 999999999999999;
 
 const NumberInput: React.FC<INumberInput> = (props: INumberInput) => {
+	console.log("props", props);
 	const [value, setValue] = useState(props.value);
 	const [error, setError] = useState(props.errorMessage);
 	const sectionRightIconRef = useRef<HTMLDivElement | null>(null);
@@ -21,9 +22,9 @@ const NumberInput: React.FC<INumberInput> = (props: INumberInput) => {
 	if (props.icon === "currency") optionalProps["prefix"] = "$";
 	if (props.icon === "percentage") optionalProps["suffix"] = "%";
 
-	let decimalPlaces = 0;
+	let decimalPlaces = props.decimalPlace ?? 0;
 	if (props.icon === "currency" || props.icon === "percentage") {
-		decimalPlaces = props.decimalPlace || 2;
+		decimalPlaces = props.decimalPlace ?? 2;
 	}
 
 	const [showPlaceHolder, setShowPlaceHolder] = useState<boolean>(false);
@@ -93,9 +94,10 @@ const NumberInput: React.FC<INumberInput> = (props: INumberInput) => {
 	};
 
 	const getMessageText = () => {
-		if (value && props.required && error === transformPhrase("fieldRequired")) {
-			setError("");
-		} else if (value && props.min && +value >= props.min && error === transformPhrase("minValueRequired")) {
+		if (
+			(value && props.required && error === transformPhrase("fieldRequired")) ||
+			(value && props.min && +value >= props.min && error === transformPhrase("minValueRequired"))
+		) {
 			setError("");
 		}
 
@@ -115,12 +117,12 @@ const NumberInput: React.FC<INumberInput> = (props: INumberInput) => {
 	useEffect(() => {
 		if (props.tooltip && (props.sectionType === "right" || props.sectionType === "both") && props.sectionRightIcon) {
 			console.log(sectionRightIconRef.current?.clientWidth);
-			setSectionWidth(sectionRightIconRef.current?.clientWidth || 0);
+			setSectionWidth(sectionRightIconRef.current?.clientWidth ?? 0);
 		}
 	}, []);
 
 	return (
-		<div className={`${styles.form_group} ${props.formClass || ""}`}>
+		<div className={`${styles.form_group} ${props.formClass ?? ""}`}>
 			<HideComponentWrapper show={!!props.label}>
 				<label className={`${styles.form_label} ${props.required === true ? styles.required : styles.optional}`} htmlFor={props.id}>
 					{props.label}
@@ -145,7 +147,7 @@ const NumberInput: React.FC<INumberInput> = (props: INumberInput) => {
 					</div>
 				</HideComponentWrapper>
 				<HideComponentWrapper show={!!props.leftIcon}>
-					<div className={props.leftIconClass || styles.amount_left_icon}>{props.leftIcon}</div>
+					<div className={props.leftIconClass ?? styles.amount_left_icon}>{props.leftIcon}</div>
 				</HideComponentWrapper>
 				<div className={`${styles.multisection_cont} ${props.sectionType ? styles["section_type_" + props.sectionType] : ""}`}>
 					<div
@@ -169,21 +171,21 @@ const NumberInput: React.FC<INumberInput> = (props: INumberInput) => {
 						min={props.min ?? 0}
 						max={optionalProps.max}
 						inputMode={"decimal"}
-						placeholder={showPlaceHolder ? "__." + "_".repeat(decimalPlaces) : props.placeholder}
+						placeholder={showPlaceHolder && props.showDecimalPlaceholder ? "__." + "_".repeat(decimalPlaces) : props.placeholder}
 						aria-invalid={props.formSubmitted && typeof value !== "number" && !value && props.required}
 						aria-valuetext={showPlaceHolder || value || value == 0 ? "true" : "false"}
 						mask={props.mask}
 						getInputRef={numberFormatterRef}
 						decimalScale={decimalPlaces}
-						fixedDecimalScale={!!decimalPlaces}
+						fixedDecimalScale={props.fixedDecimalScale}
 						isAllowed={handleAllowValues}
 						allowNegative={props.allowNegative || false}
 						onContextMenu={props.onContextMenu}
 						thousandSeparator={props.thousandSeparator || props.icon === "currency"}
-						thousandsGroupStyle={props.thousandsGroupStyle || "thousand"}
+						thousandsGroupStyle={props.thousandsGroupStyle ?? "thousand"}
 						readOnly={props.readOnly}
 						autoFocus={props.autoFocus}
-						aria-details={props.icon || "Number"}
+						aria-details={props.icon ?? "Number"}
 						ref={props.ref}
 						{...optionalProps}
 					/>
@@ -202,4 +204,5 @@ const NumberInput: React.FC<INumberInput> = (props: INumberInput) => {
 	);
 };
 
+NumberInput.displayName = "NumberInput";
 export default NumberInput;

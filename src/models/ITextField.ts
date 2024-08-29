@@ -35,3 +35,29 @@ export interface ITextField {
 	sectionLeftIcon?: React.ReactNode;
 	sectionRightIcon?: React.ReactNode;
 }
+
+export interface ITextareaProps {
+	id: string;
+	rows: number;
+	value: string | number;
+	onChange: any;
+	className: string;
+	required: boolean;
+	formSubmitted: boolean;
+	name: string;
+	label: string;
+	errorMessage?: string;
+	formClass?: string;
+	maxLength?: number;
+	minLength?: number;
+	onBlur?: any;
+	disabled?: boolean;
+	hideMaxLength?: boolean;
+	maxLengthPos?: "bottom" | "top" | "bottom_left";
+	placeholder?: string;
+	customPosClassName?: string;
+	transformPhrase?: (phrase: string, lang: string, params: any) => string;
+	UiLanguage?: string;
+	hintText?: string;
+	ref?: any;
+}

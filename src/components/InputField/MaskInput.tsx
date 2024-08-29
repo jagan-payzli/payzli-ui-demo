@@ -11,8 +11,8 @@ import { IMaskInputProps } from "../../models/IMaskInputProps";
  * @param mask - "_"
  * @param format = "##-#######"
  */
-const MaskInput = (props: IMaskInputProps) => {
-	const { mask = "_" } = props;
+const MaskInput: React.FC<IMaskInputProps> = (props: IMaskInputProps) => {
+	const { mask } = props;
 	const [error, setError] = useState(props.errorMessage);
 	const [value, setValue] = useState(props.value || "");
 	const sectionRightIconRef = useRef<HTMLDivElement | null>(null);
@@ -41,15 +41,21 @@ const MaskInput = (props: IMaskInputProps) => {
 	}, [props.errorMessage]);
 
 	useEffect(() => {
-		props?.isError?.({ [props.name]: error || "" });
+		props?.isError?.({ [props.name]: error ?? "" });
 	}, [error]);
 
-	const disableCopyPaste = (e: any) => {
+	useEffect(() => {
+		if (props.tooltip && (props.sectionType === "right" || props.sectionType === "both") && props.sectionRightIcon) {
+			setSectionWidth(sectionRightIconRef.current?.clientWidth ?? 0);
+		}
+	}, []);
+
+	const disableCopyPaste = (e: React.FocusEvent<HTMLInputElement>) => {
 		e.preventDefault();
 		return false;
 	};
 
-	const handleValidate = (e: any) => {
+	const handleValidate = (e: React.FocusEvent<HTMLInputElement>) => {
 		if (!props.required && !e.target.value) {
 			e.target.classList.remove(styles.field_invalid);
 			setError("");
@@ -59,6 +65,9 @@ const MaskInput = (props: IMaskInputProps) => {
 		setShowPlaceHolder(false);
 		if (props.skipValidation) {
 			setError("");
+		} else if (props.required && !e.target.value) {
+			e.target.classList.add(styles.field_invalid);
+			setError(transformPhrase("fieldRequired"));
 		} else if (mask && e.target.value.includes(mask)) {
 			e.target.classList.add(styles.field_invalid);
 			if (props.type === "tel") {
@@ -74,14 +83,14 @@ const MaskInput = (props: IMaskInputProps) => {
 		props.onBlur?.(e);
 	};
 
-	const handleChange = (e: any) => {
+	const handleChange = (e: React.FocusEvent<HTMLInputElement>) => {
 		if (props.type === "number") {
 			e.target.value = e.target.value.replace(/[%$,]/g, "");
 			if (e.target.value === ".") e.target.value = "0.";
 		}
 		props.onChange(e);
 	};
-	const handleFocus = (e: any) => {
+	const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
 		props.onFocus?.(e);
 		if (props.inputType === "number-psssword") e.target.type = "text";
 	};
@@ -150,7 +159,7 @@ const MaskInput = (props: IMaskInputProps) => {
 						onBlur={handleValidate}
 						decimalScale={decimalPlaces}
 						allowLeadingZeros
-						mask={mask || ""}
+						mask={mask ?? ""}
 						required={!!props.required}
 						onChange={handleChange}
 						id={props.id || props.name || props.label}
@@ -165,7 +174,7 @@ const MaskInput = (props: IMaskInputProps) => {
 						onCut={props.onCut}
 						onContextMenu={props.onContextMenu}
 						{...optionalProps}
-						inputMode={numbericModeByType[props.type]}
+						inputMode={props.inputMode ?? numbericModeByType[props.type ?? "number"]}
 						placeholder={props.placeholder}
 					/>
 					<div
@@ -193,4 +202,5 @@ const numbericModeByType: any = {
 	"": "text",
 	date: "numberic"
 };
+MaskInput.displayName = "MaskInput";
 export default MaskInput;

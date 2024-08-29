@@ -10,4 +10,5 @@ const Card: React.FC<ICardProps> = (props: ICardProps) => {
 	);
 };
 
+Card.displayName = "Card";
 export default Card;

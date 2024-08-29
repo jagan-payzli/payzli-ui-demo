@@ -3,7 +3,6 @@ import { IAccordion } from "../../models/IAccordion";
 import Styles from "./Accordion.module.css";
 
 const Accordion: React.FC<IAccordion> = (props: IAccordion) => {
-	// const { open } = props;
 	const [open, setOpen] = useState<boolean>(false);
 	useEffect(() => {
 		setOpen(props.open);
@@ -45,5 +44,5 @@ const Accordion: React.FC<IAccordion> = (props: IAccordion) => {
 		</div>
 	);
 };
-
+Accordion.displayName = "Accordion";
 export default Accordion;

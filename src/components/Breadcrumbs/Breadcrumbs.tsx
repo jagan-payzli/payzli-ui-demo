@@ -35,4 +35,5 @@ const Breadcrumbs: React.FC<IBreadcrumbs> = (props: IBreadcrumbs) => {
 	);
 };
 
+Breadcrumbs.displayName = "Breadcrumbs";
 export default Breadcrumbs;

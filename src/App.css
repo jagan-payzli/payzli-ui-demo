@@ -81,3 +81,6 @@ button {
 .bold {
 	font-family: "semibold" !important;
 }
+.py_icon_color {
+	color: var(--icon-color, #98a2b3);
+}

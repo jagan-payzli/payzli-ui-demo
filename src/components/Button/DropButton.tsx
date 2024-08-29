@@ -116,4 +116,5 @@ const DropButton: React.FC<IDropButtonProps> = forwardRef((props: IDropButtonPro
 	);
 });
 
+DropButton.displayName = "DropButton";
 export default DropButton;

@@ -144,4 +144,5 @@ const Avatar: React.FC<IAvatar> = ({ src, image_hash, mime_type, src_text, style
 	);
 };
 
+Avatar.displayName = "Avatar";
 export default Avatar;
